@@ -55,6 +55,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         .isBefore(Helpers.getEndOfDay(_currentDay)) &&
                     town.assignedTeam == currTech.team)
                 .toList();
+            currDayTowns
+                .sort((a, b) => a.scheduledTime.compareTo(b.scheduledTime));
             return NestedScrollView(
               headerSliverBuilder: (context, innerBoxIsScrolled) {
                 return [
