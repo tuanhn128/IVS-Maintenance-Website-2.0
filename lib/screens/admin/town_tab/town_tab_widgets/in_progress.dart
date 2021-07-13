@@ -30,7 +30,13 @@ class _InProgressState extends State<InProgress> {
   void didUpdateWidget(covariant InProgress oldWidget) {
     if (towns.toSet() != widget.inProgressTowns?.toSet()) {
       towns = widget.inProgressTowns ?? [];
-      towns.sort((a, b) => a.assignedTeam.compareTo(b.assignedTeam));
+      /* Call _onSort so that the towns stay sorted by the column that is selected in table.
+      Since _onSort reverses _ascending, we want to reverse it before we call _onSort,
+      so that _ascending gets "reversed" back to normal */
+      setState(() {
+        _ascending = !_ascending;
+      });
+      _onSort(_sortColumnIndex, _ascending);
     }
     super.didUpdateWidget(oldWidget);
   }

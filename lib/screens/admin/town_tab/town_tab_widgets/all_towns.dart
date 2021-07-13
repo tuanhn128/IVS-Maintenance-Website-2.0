@@ -35,7 +35,13 @@ class _AllTownsState extends State<AllTowns> {
   void didUpdateWidget(covariant AllTowns oldWidget) {
     if (towns.toSet() != widget.allTowns?.toSet()) {
       towns = widget.allTowns ?? [];
-      towns.sort((a, b) => a.scheduledTime.compareTo(b.scheduledTime));
+      /* Call _onSort so that the towns stay sorted by the column that is selected in table.
+      Since _onSort reverses _ascending, we want to reverse it before we call _onSort,
+      so that _ascending gets "reversed" back to normal */
+      setState(() {
+        _ascending = !_ascending;
+      });
+      _onSort(_sortColumnIndex, _ascending);
     }
     super.didUpdateWidget(oldWidget);
   }
