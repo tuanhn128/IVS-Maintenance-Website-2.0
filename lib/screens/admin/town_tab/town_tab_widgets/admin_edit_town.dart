@@ -61,9 +61,9 @@ class _AdminEditTownState extends State<AdminEditTown> {
             phoneNumbers: _phoneNumbers,
             scheduledTime: _scheduledTime,
             assignedTeam: _assignedTeam)) {
-      TipDialogHelper.success('Town Report Saved!');
+      TipDialogHelper.success('Town Info Saved!');
     } else {
-      TipDialogHelper.success('Town Report Save Failed :(');
+      TipDialogHelper.success('Town Info Save Failed :(');
     }
     setState(() {
       _changesMade = false;
